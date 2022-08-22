@@ -1,4 +1,5 @@
 import { SourceClient } from './datasource/datasource';
+import { renderMessage } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
 
 export const mainApp = async (dryrun: boolean): Promise<void> => {
@@ -12,40 +13,39 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const endDate = tomorrow.toISOString().substring(0,10);
 
   console.log(`Fetching prices from ${startDate} to ${endDate}`);
-  const prices = await sourceClient.getSpotPrices(startDate, endDate);
+  const hourlySpotPrices = await sourceClient.getSpotPrices(startDate, endDate);
 
-  if (prices.length == 48) {
-    const slicedPrices = [
-      prices.slice(0, 7),
-      prices.slice(7, 24),
-      prices.slice(24, 31),
-      prices.slice(31)
+  if (hourlySpotPrices.length == 48) {
+    const segmentedHourlySpotPrices = [
+      hourlySpotPrices.slice(0, 7),
+      hourlySpotPrices.slice(7, 24),
+      hourlySpotPrices.slice(24, 31),
+      hourlySpotPrices.slice(31)
     ];
 
-    const timeSegments = []
-    for (const slice of slicedPrices) {
-      timeSegments.push({
-        date: slice[0].timeStampDay,
-        hours: `${slice[0].timeStampHour}-${slice[slice.length - 1].timeStampHour}`,
-        prices: slice.map(hour => hour.value),
-        priceLow: Math.min(...slice.map(hour => hour.value)),
-        priceHigh: Math.max(...slice.map(hour => hour.value)),
-        priveAverage: slice.reduce((total, next) => total + next.value, 0) / slice.length
+    const priceDataForTimeSegments = []
+    for (const segment of segmentedHourlySpotPrices) {
+      priceDataForTimeSegments.push({
+        date: segment[0].timeStampDay,
+        hours: `${segment[0].timeStampHour}-${segment[segment.length - 1].timeStampHour}`,
+        hourlyPrices: segment.map(hour => hour.value),
+        priceLowest: Math.min(...segment.map(hour => hour.value)),
+        priceHighest: Math.max(...segment.map(hour => hour.value)),
+        priceAverage: segment.reduce((total, next) => total + next.value, 0) / segment.length
       })
     }
 
-    console.log(timeSegments);
-
     if (!dryrun) {
-      await telegramClient.sendMessage("hei");
+      await telegramClient.sendMessage(renderMessage(priceDataForTimeSegments));
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
+      console.log(priceDataForTimeSegments);
     }
   }
   else {
     console.error("Error: Unexpected size of input array");
-    console.log(prices);
+    console.log(hourlySpotPrices);
   }
 };
 
