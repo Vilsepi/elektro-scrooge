@@ -14,18 +14,13 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   console.log(`Fetching prices from ${startDate} to ${endDate}`);
   const prices = await sourceClient.getSpotPrices(startDate, endDate);
 
-  if (prices.length) {
-
+  if (prices.length == 48) {
     const slicedPrices = [
       prices.slice(0, 7),
       prices.slice(7, 24),
       prices.slice(24, 31),
       prices.slice(31)
     ];
-
-    if (slicedPrices[3].length != 17) {
-      console.error("Error: Unexpected size of input array");
-    }
 
     const timeSegments = []
     for (const slice of slicedPrices) {
@@ -47,6 +42,10 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
     else {
       console.log("Dryrun, not sending a message to Telegram");
     }
+  }
+  else {
+    console.error("Error: Unexpected size of input array");
+    console.log(prices);
   }
 };
 
