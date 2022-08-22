@@ -11,6 +11,7 @@ export interface SpotPrice {
 export interface TimeSegment {
   date: string,
   hours: string,
+  hourlyOriginalSpotPrices: number[],
   hourlyPrices: number[],
   priceLowest: number,
   priceHighest: number,

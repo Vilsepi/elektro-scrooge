@@ -4,9 +4,9 @@ import { renderMessage } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
 
 const ELECTRICITY_COMPANY_MARGIN = 1.25;
+const ELECTRICITY_TAX_MULTIPLIER = 1.24;
 const GRID_SERVICE_FEE = 3.25;
-const TAXES = 2.79;
-const ADDITIONAL_FEES = ELECTRICITY_COMPANY_MARGIN + GRID_SERVICE_FEE + TAXES;
+const GRID_SERVICE_TAX_FOR_HOUSEHOLDS = 2.79372;
 
 export const mainApp = async (dryrun: boolean): Promise<void> => {
   const sourceClient: SourceClient = new SourceClient();
@@ -23,10 +23,10 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
 
   if (hourlySpotPrices.length == 48) {
     const segmentedHourlySpotPrices = [
-      hourlySpotPrices.slice(0, 7),
-      hourlySpotPrices.slice(7, 24),
-      hourlySpotPrices.slice(24, 31),
-      hourlySpotPrices.slice(31)
+      hourlySpotPrices.slice(0, 7),   // today 00:00-07:00
+      hourlySpotPrices.slice(7, 24),  // today 07:00-24:00
+      hourlySpotPrices.slice(24, 31), // tomorrow 00:00-07:00
+      hourlySpotPrices.slice(31)      // tomorrow 07:00-24:00
     ];
 
     const priceDataForTimeSegments: TimeSegment[] = [];
@@ -34,10 +34,11 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
       priceDataForTimeSegments.push({
         date: segment[0].timeStampDay,
         hours: `${segment[0].timeStampHour}-${segment[segment.length - 1].timeStampHour}`,
-        hourlyPrices: segment.map(hour => hour.value + ADDITIONAL_FEES),
-        priceLowest: Math.min(...segment.map(hour => hour.value)) + ADDITIONAL_FEES,
-        priceHighest: Math.max(...segment.map(hour => hour.value)) + ADDITIONAL_FEES,
-        priceAverage: (segment.reduce((total, next) => total + next.value, 0) / segment.length) + ADDITIONAL_FEES
+        hourlyOriginalSpotPrices: segment.map(hour => hour.value),
+        hourlyPrices: segment.map(hour => getPriceWithFeesAndTaxes(hour.value)),
+        priceLowest: getPriceWithFeesAndTaxes(Math.min(...segment.map(hour => hour.value))),
+        priceHighest: getPriceWithFeesAndTaxes(Math.max(...segment.map(hour => hour.value))),
+        priceAverage: getPriceWithFeesAndTaxes(segment.reduce((total, next) => total + next.value, 0) / segment.length)
       });
     }
 
@@ -56,6 +57,10 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
     console.log(hourlySpotPrices);
   }
 };
+
+export const getPriceWithFeesAndTaxes = (basePrice: number): number => {
+  return (basePrice * ELECTRICITY_TAX_MULTIPLIER) + ELECTRICITY_COMPANY_MARGIN + GRID_SERVICE_FEE + GRID_SERVICE_TAX_FOR_HOUSEHOLDS;
+}
 
 export const handler = async (event: LambdaEvent): Promise<LambdaResponse> => {
   console.log(JSON.stringify(event));
