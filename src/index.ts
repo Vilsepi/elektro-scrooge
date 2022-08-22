@@ -1,6 +1,12 @@
 import { SourceClient } from './datasource/datasource';
+import { TimeSegment } from './datasource/datasourceTypes';
 import { renderMessage } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
+
+const ELECTRICITY_COMPANY_MARGIN = 1.25;
+const GRID_SERVICE_FEE = 3.25;
+const TAXES = 2.79;
+const ADDITIONAL_FEES = ELECTRICITY_COMPANY_MARGIN + GRID_SERVICE_FEE + TAXES;
 
 export const mainApp = async (dryrun: boolean): Promise<void> => {
   const sourceClient: SourceClient = new SourceClient();
@@ -23,24 +29,26 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
       hourlySpotPrices.slice(31)
     ];
 
-    const priceDataForTimeSegments = []
+    const priceDataForTimeSegments: TimeSegment[] = [];
     for (const segment of segmentedHourlySpotPrices) {
       priceDataForTimeSegments.push({
         date: segment[0].timeStampDay,
         hours: `${segment[0].timeStampHour}-${segment[segment.length - 1].timeStampHour}`,
-        hourlyPrices: segment.map(hour => hour.value),
-        priceLowest: Math.min(...segment.map(hour => hour.value)),
-        priceHighest: Math.max(...segment.map(hour => hour.value)),
-        priceAverage: segment.reduce((total, next) => total + next.value, 0) / segment.length
-      })
+        hourlyPrices: segment.map(hour => hour.value + ADDITIONAL_FEES),
+        priceLowest: Math.min(...segment.map(hour => hour.value)) + ADDITIONAL_FEES,
+        priceHighest: Math.max(...segment.map(hour => hour.value)) + ADDITIONAL_FEES,
+        priceAverage: (segment.reduce((total, next) => total + next.value, 0) / segment.length) + ADDITIONAL_FEES
+      });
     }
 
+    const message = renderMessage(priceDataForTimeSegments);
     if (!dryrun) {
-      await telegramClient.sendMessage(renderMessage(priceDataForTimeSegments));
+      await telegramClient.sendMessage(message);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
       console.log(priceDataForTimeSegments);
+      console.log(message);
     }
   }
   else {

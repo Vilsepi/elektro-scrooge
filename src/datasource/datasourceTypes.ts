@@ -7,3 +7,12 @@ export interface SpotPrice {
   unit: string, // e.g. "snt/kWh"
   value: number // e.g. 55.39
 }
+
+export interface TimeSegment {
+  date: string,
+  hours: string,
+  hourlyPrices: number[],
+  priceLowest: number,
+  priceHighest: number,
+  priceAverage: number
+}
