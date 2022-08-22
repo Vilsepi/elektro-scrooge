@@ -1,6 +1,6 @@
-# elektro-scrooge
+# Elektro-Scrooge
 
-Bot for electricity spot price
+Telegram bot for tracking electricity spot prices
 
 ![Electrified Scrooge](elektro-scrooge.jpg)
 
