@@ -1,0 +1,30 @@
+service: elektro-scrooge
+frameworkVersion: ">=3.21.0 <4.0.0"
+
+custom:
+  credentialsProfile: heap
+  region: eu-west-1
+  secret: ${file(secrets.yml)}
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: ${self:custom.region}
+  profile: ${self:custom.credentialsProfile}
+  environment:
+    TELEGRAM_BOT_AUTH_TOKEN: ${self:custom.secret.telegram_bot_auth_token}
+    TELEGRAM_CHAT_ID: ${self:custom.secret.telegram_chat_id}
+
+functions:
+  postPrice:
+    handler: dist/index.handler
+    memorySize: 128
+    timeout: 60
+    events:
+      - schedule: cron(00 13 ? * * *) # 3.00pm during winter, 4.00pm during summer in Finland
+
+package:
+  patterns:
+    - "!*"
+    - "dist/**"
+    - "node_modules/**"
