@@ -19,7 +19,7 @@ export const renderMessage = (segments: TimeSegment[]): string => {
 
   let tableOfPrices = '';
   for (const segment of segments) {
-    tableOfPrices += `${segment.date} ${segment.hours}: ${+Number(segment.priceLowest).toFixed(1)}-${+Number(segment.priceHighest).toFixed(1)} snt/kWh\n`;
+    tableOfPrices += `${segment.date} ${segment.hours}: ${+Number(segment.priceLowest).toFixed(0)}-${+Number(segment.priceHighest).toFixed(0)} snt/kWh\n`;
   }
 
     return baseMessage + tableOfPrices;
