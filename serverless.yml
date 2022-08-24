@@ -26,5 +26,6 @@ functions:
 package:
   patterns:
     - "!*"
+    - "!*/**"
     - "dist/**"
     - "node_modules/**"
