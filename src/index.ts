@@ -1,5 +1,5 @@
 import { SourceClient } from './datasource/datasource';
-import { TimeSegment } from './datasource/datasourceTypes';
+import { SpotPrice, TimeSegment } from './datasource/datasourceTypes';
 import { renderMessage } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
 
@@ -22,41 +22,49 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const hourlySpotPrices = await sourceClient.getSpotPrices(startDate, endDate);
 
   if (hourlySpotPrices.length == 48) {
-    const segmentedHourlySpotPrices = [
-      hourlySpotPrices.slice(0, 7),   // today 00:00-07:00
-      hourlySpotPrices.slice(7, 24),  // today 07:00-24:00
-      hourlySpotPrices.slice(24, 31), // tomorrow 00:00-07:00
-      hourlySpotPrices.slice(31)      // tomorrow 07:00-24:00
+
+    const interestingSlices = [
+      hourlySpotPrices.slice(24, 31),
+      hourlySpotPrices.slice(31, 40),
+      hourlySpotPrices.slice(41, 44),
+      hourlySpotPrices.slice(44, 48),
     ];
 
-    const priceDataForTimeSegments: TimeSegment[] = [];
-    for (const segment of segmentedHourlySpotPrices) {
-      priceDataForTimeSegments.push({
-        date: segment[0].timeStampDay,
-        hours: `${segment[0].timeStampHour}-${segment[segment.length - 1].timeStampHour}`,
-        hourlyOriginalSpotPrices: segment.map(hour => hour.value),
-        hourlyPrices: segment.map(hour => getPriceWithFeesAndTaxes(hour.value)),
-        priceLowest: getPriceWithFeesAndTaxes(Math.min(...segment.map(hour => hour.value))),
-        priceHighest: getPriceWithFeesAndTaxes(Math.max(...segment.map(hour => hour.value))),
-        priceAverage: getPriceWithFeesAndTaxes(segment.reduce((total, next) => total + next.value, 0) / segment.length)
-      });
-    }
+    const todaysDaytimePrices: TimeSegment = getSegment(hourlySpotPrices.slice(7, 24));
+    const tomorrowsDaytimePrices: TimeSegment = getSegment(hourlySpotPrices.slice(31));
+    const tomorrowsDetailedPrices: TimeSegment[] = interestingSlices.map(slice => getSegment(slice));
 
-    const message = renderMessage(priceDataForTimeSegments);
+    const message = renderMessage(todaysDaytimePrices, tomorrowsDaytimePrices, tomorrowsDetailedPrices);
     if (!dryrun) {
       await telegramClient.sendMessage(message);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
-      console.log(priceDataForTimeSegments);
+      console.log(tomorrowsDaytimePrices);
       console.log(message);
     }
   }
   else {
-    console.error("Error: Unexpected size of input array");
+    console.error(`Error: Unexpected size of input array (${hourlySpotPrices.length})`);
     console.log(hourlySpotPrices);
   }
 };
+
+export const getSimpleHour = (timeStampHour: string): string => {
+  return timeStampHour.split(':')[0];
+}
+
+export const getSegment = (segment: SpotPrice[]): TimeSegment => {
+  return {
+    date: segment[0].timeStampDay,
+    hours: `${getSimpleHour(segment[0].timeStampHour)}-${getSimpleHour(segment[segment.length - 1].timeStampHour)}`,
+    hourlyOriginalSpotPrices: segment.map(hour => hour.value),
+    hourlyPrices: segment.map(hour => getPriceWithFeesAndTaxes(hour.value)),
+    priceLowest: getPriceWithFeesAndTaxes(Math.min(...segment.map(hour => hour.value))),
+    priceHighest: getPriceWithFeesAndTaxes(Math.max(...segment.map(hour => hour.value))),
+    priceAverage: getPriceWithFeesAndTaxes(segment.reduce((total, next) => total + next.value, 0) / segment.length)
+  }
+}
 
 export const getPriceWithFeesAndTaxes = (basePrice: number): number => {
   return (basePrice * ELECTRICITY_TAX_MULTIPLIER) + ELECTRICITY_COMPANY_MARGIN + GRID_SERVICE_FEE + GRID_SERVICE_TAX_FOR_HOUSEHOLDS;
