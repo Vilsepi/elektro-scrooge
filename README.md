@@ -33,4 +33,4 @@ When running `npm install`, husky should setup a pre-commit hook, so these will 
 ### Deploying
 
     npm install serverless
-    sls deploy
+    npx sls deploy
