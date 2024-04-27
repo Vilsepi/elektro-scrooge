@@ -17,8 +17,8 @@ export const renderMessage = (today: TimeSegment, tomorrow: TimeSegment, detaile
     `Sähkön hinta on huomenna <b>~${+Number(tomorrow.priceAverage).toFixed(0)}c/kWh</b>, ` +
     `joka on <b>${getDifferenceBetweenDays(today.priceAverage, tomorrow.priceAverage)}</b> kuin tänään.` +
     '\n\n' +
-    `Saunominen maksaa ${+Number(tomorrow.priceHighest*sauna_cost_multiplier).toFixed(1)}€/kerta, ` +
-    `muut kodinkoneet ${+Number(tomorrow.priceHighest*white_appliance_cost_multiplier).toFixed(1)}€/kerta.\n\n`;
+    `Saunominen maksaa ${+Number(tomorrow.priceHighest*sauna_cost_multiplier).toFixed(1)}€ ja ` +
+    `muut kodinkoneet ${+Number(tomorrow.priceHighest*white_appliance_cost_multiplier).toFixed(1)}€ per kerta.\n\n`;
 
   let tableOfPrices = '';
   for (const segment of detailedHours) {
