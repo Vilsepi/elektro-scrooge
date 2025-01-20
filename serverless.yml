@@ -22,6 +22,12 @@ functions:
     timeout: 60
     events:
       - schedule: cron(00 13 ? * * *) # 3.00pm during winter, 4.00pm during summer in Finland
+    layers:
+      - arn:aws:lambda:${self:custom.region}:${aws:accountId}:layer:canvas-nodejs:1
+
+plugins:
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
 
 package:
   patterns:

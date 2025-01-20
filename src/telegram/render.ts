@@ -2,7 +2,6 @@ import { ChartJSNodeCanvas, ChartCallback } from 'chartjs-node-canvas';
 import { ChartConfiguration } from 'chart.js';
 import { TimeSegment } from '../datasource/datasourceTypes';
 import { promises as fs } from 'fs';
-import path from 'path';
 
 // Used kWh per euro (100 eurocents) per one use
 const sauna_cost_multiplier = 10/100;
@@ -125,7 +124,7 @@ export const renderGraph = async (today: TimeSegment, tomorrow: TimeSegment): Pr
   };
   const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height, chartCallback });
   const buffer = await chartJSNodeCanvas.renderToBuffer(configuration);
-  const filePath = path.resolve(__dirname, 'graph.png');
+  const filePath = '/tmp/elektro-scrooge-price-graph.png';
   await fs.writeFile(filePath, buffer, 'base64');
   return filePath;
 }

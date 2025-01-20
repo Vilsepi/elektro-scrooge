@@ -32,5 +32,12 @@ When running `npm install`, husky should setup a pre-commit hook, so these will 
 
 ### Deploying
 
+Prerequisites:
+
+- Install canvas lambda layer https://github.com/charoitel/lambda-layer-canvas-nodejs
+- Setup a Telegram bot and make a copy of `secrets.example.yml` into `secrets.yml`.
+- Setup working AWS CLI credentials
+
     npm install serverless
+    npm run build
     npx sls deploy
