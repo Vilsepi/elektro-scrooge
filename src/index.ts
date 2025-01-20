@@ -1,6 +1,6 @@
 import { SourceClient } from './datasource/datasource';
 import { SpotPrice, TimeSegment } from './datasource/datasourceTypes';
-import { renderMessage } from './telegram/render';
+import { renderCaption, renderGraph } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
 
 // General multiplier for VAT 25.5%. Spot prices from API are in VAT 0%
@@ -36,17 +36,10 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
     const todaysDaytimePrices: TimeSegment = getSegment(hourlySpotPrices.slice(7, 24));  // Today 07-23
     const tomorrowsDaytimePrices: TimeSegment = getSegment(hourlySpotPrices.slice(31));  // Tomorrow 07-23
 
-    const interestingSlices = [
-      hourlySpotPrices.slice(24, 31), // Tomorrow 00-06
-      hourlySpotPrices.slice(31, 41), // Tomorrow 07-16
-      hourlySpotPrices.slice(41, 44), // Tomorrow 17-19
-      hourlySpotPrices.slice(44, 48), // Tomorrow 20-23
-    ];
-    const tomorrowsDetailedPrices: TimeSegment[] = interestingSlices.map(slice => getSegment(slice));
-
-    const message = renderMessage(todaysDaytimePrices, tomorrowsDaytimePrices, tomorrowsDetailedPrices);
+    const graphImagePath = await renderGraph(todaysDaytimePrices, tomorrowsDaytimePrices);
+    const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
     if (!dryrun) {
-      await telegramClient.sendMessage(message);
+      await telegramClient.sendImage(graphImagePath, message);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");

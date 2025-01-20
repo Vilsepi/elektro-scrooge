@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { TelegramResponse } from './telegramTypes';
+import FormData from 'form-data';
+import * as fs from 'fs';
 
 export class TelegramClient {
   private readonly client: AxiosInstance;
@@ -24,4 +26,19 @@ export class TelegramClient {
       disable_web_page_preview: true
     })).data;
   }
+
+  // Send an image with a caption text
+  public sendImage = async (imagePath: string, caption: string): Promise<TelegramResponse> => {
+    const formData = new FormData();
+    formData.append('chat_id', this.chatId);
+    formData.append('caption', caption);
+    formData.append('photo', fs.createReadStream(imagePath));
+
+    return (await this.client.post<TelegramResponse>(`/bot${this.authToken}/sendPhoto`, formData, {
+      headers: {
+          ...formData.getHeaders(),
+      },
+    })).data;
+  }
+
 }
