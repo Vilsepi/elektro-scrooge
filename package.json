@@ -26,14 +26,14 @@
   },
   "private": true,
   "scripts": {
-    "build": "tsc && cp Roboto-Regular.ttf dist/telegram/",
+    "build": "tsc",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "postinstall": "npx husky install",
     "start": "node dist/index.js",
     "test": "jest --verbose",
     "prepare": "husky",
-    "deploy": "npx sls deploy"
+    "deploy": "cp Roboto-Regular.ttf dist/telegram/ && npx sls deploy"
   },
   "repository": {
     "type": "git",
