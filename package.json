@@ -26,7 +26,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp Roboto-Regular.ttf dist/telegram/",
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "postinstall": "npx husky install",

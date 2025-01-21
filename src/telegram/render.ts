@@ -2,6 +2,8 @@ import { ChartJSNodeCanvas, ChartCallback } from 'chartjs-node-canvas';
 import { ChartConfiguration } from 'chart.js';
 import { TimeSegment } from '../datasource/datasourceTypes';
 import { promises as fs } from 'fs';
+import { registerFont } from 'canvas';
+import path from 'path';
 
 // Used kWh per euro (100 eurocents) per one use
 const sauna_cost_multiplier = 10/100;
@@ -121,10 +123,24 @@ export const renderGraph = async (today: TimeSegment, tomorrow: TimeSegment): Pr
   const chartCallback: ChartCallback = (ChartJS) => {
     ChartJS.defaults.responsive = true;
     ChartJS.defaults.maintainAspectRatio = false;
+    ChartJS.defaults.font.family = 'Roboto';
+    ChartJS.defaults.font.size = 14;
   };
+
+  // Lambda runtime does not contain any fonts so we need to manually include one
+  registerFont(path.resolve(__dirname, 'Roboto-Regular.ttf'), { family: 'Roboto' });
+
+  const isInAws = !!process.env.LAMBDA_TASK_ROOT;
+  let filePath = '';
+  if (isInAws) {
+    filePath = '/tmp/elektro-scrooge-price-graph.png';
+  }
+  else {
+    filePath = 'graph.png';
+  }
+
   const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height, chartCallback });
   const buffer = await chartJSNodeCanvas.renderToBuffer(configuration);
-  const filePath = '/tmp/elektro-scrooge-price-graph.png';
   await fs.writeFile(filePath, buffer, 'base64');
   return filePath;
 }
