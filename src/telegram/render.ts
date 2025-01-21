@@ -98,6 +98,8 @@ export const renderGraph = async (today: TimeSegment, tomorrow: TimeSegment): Pr
         },
         y: {
           display: true,
+          min: 0,
+          max: 50,
           title: {
             display: true,
             text: 'c/kWh',
