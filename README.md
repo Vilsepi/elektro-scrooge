@@ -28,16 +28,17 @@ In order to send messages to Telegram, you'll need to setup a bot and a chat, an
     npm run lint
     npm run test
 
-When running `npm install`, husky should setup a pre-commit hook, so these will be run automatically before each commit.
-
 ### Deploying
 
-Prerequisites:
+There's unfortunately quite a lot of manual steps to completely deploy this project:
 
 - Install canvas lambda layer https://github.com/charoitel/lambda-layer-canvas-nodejs
 - Setup a Telegram bot and make a copy of `secrets.example.yml` into `secrets.yml`.
 - Setup working AWS CLI credentials
+- Download a font that you want to use and include it in the `render.ts`.
+
+Finally:
 
     npm install serverless
     npm run build
-    npx sls deploy
+    npm run deploy

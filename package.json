@@ -32,7 +32,8 @@
     "postinstall": "npx husky install",
     "start": "node dist/index.js",
     "test": "jest --verbose",
-    "prepare": "husky"
+    "prepare": "husky",
+    "deploy": "npx sls deploy"
   },
   "repository": {
     "type": "git",
