@@ -1,4 +1,0 @@
-# Do not lint following directories
-node_modules
-dist
-coverage
