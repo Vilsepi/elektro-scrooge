@@ -1,0 +1,3 @@
+name: elektro-scrooge
+runtime: nodejs
+description: Telegram bot for electricity spot price notifications
