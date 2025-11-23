@@ -3,6 +3,7 @@ import * as aws from "@pulumi/aws";
 
 const config = new pulumi.Config();
 const region = config.get("region") || "eu-west-1";
+const stack = pulumi.getStack();
 
 // Get Telegram secrets from Pulumi config (encrypted)
 // These should be set via: pulumi config set --secret telegram_bot_auth_token <value>
@@ -34,13 +35,33 @@ const logGroup = new aws.cloudwatch.LogGroup("elektro-scrooge-log-group", {
     retentionInDays: 14,
 });
 
+const lambdaDeploymentBucket = new aws.s3.Bucket("elektro-scrooge-lambda-deployments", {
+    bucket: pulumi.interpolate`elektro-scrooge-lambda-${stack}-${awsAccountId}`,
+    forceDestroy: true,
+    versioning: {
+        enabled: true,
+    },
+});
+
+const lambdaArchive = new pulumi.asset.AssetArchive({
+    // Keep the dist contents at the root of the archive (no dist/ prefix inside the zip).
+    ".": new pulumi.asset.FileArchive("./dist")
+});
+
+const lambdaArchiveObject = new aws.s3.BucketObject("elektro-scrooge-lambda-archive", {
+    bucket: lambdaDeploymentBucket.bucket,
+    key: pulumi.interpolate`lambda-${stack}.zip`,
+    source: lambdaArchive,
+    contentType: "application/zip",
+});
+
 const lambdaFunction = new aws.lambda.Function("elektro-scrooge-postPrice", {
     runtime: aws.lambda.Runtime.NodeJS22dX,
-    handler: "dist/index.handler",
+    handler: "index.handler",
     role: lambdaRole.arn,
-    code: new pulumi.asset.AssetArchive({
-        ".": new pulumi.asset.FileArchive("./"),
-    }),
+    s3Bucket: lambdaDeploymentBucket.bucket,
+    s3Key: lambdaArchiveObject.key,
+    s3ObjectVersion: lambdaArchiveObject.versionId,
     memorySize: 128,
     timeout: 60,
     environment: {
@@ -52,7 +73,7 @@ const lambdaFunction = new aws.lambda.Function("elektro-scrooge-postPrice", {
     layers: [
         pulumi.interpolate`arn:aws:lambda:${region}:${awsAccountId}:layer:canvas-nodejs:2`,
     ],
-}, { dependsOn: [lambdaRolePolicyAttachment, logGroup] });
+}, { dependsOn: [lambdaRolePolicyAttachment, logGroup, lambdaArchiveObject] });
 
 const eventBridgeRole = new aws.iam.Role("elektro-scrooge-eventbridge-role", {
     assumeRolePolicy: JSON.stringify({
