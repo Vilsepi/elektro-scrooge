@@ -8,3 +8,7 @@ secrets.yml
 *.ttf
 
 graph.png
+
+# Pulumi state files
+Pulumi.*.yaml
+.pulumi/
