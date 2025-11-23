@@ -43,8 +43,12 @@ Install Pulumi CLI and configure your stack:
 
     npm install
     npm run build
-    pulumi login  # or pulumi login --local for local state
-    pulumi stack init dev  # or your preferred stack name
+    pulumi install
+
+    export AWS_PROFILE=heap
+    pulumi login s3://heap-pulumi-state/elektro-scrooge
+
+    pulumi stack init dev
     pulumi config set aws:region eu-west-1
     pulumi config set --secret telegram_bot_auth_token <your-bot-token>
     pulumi config set --secret telegram_chat_id <your-chat-id>
