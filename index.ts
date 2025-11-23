@@ -38,8 +38,12 @@ const logGroup = new aws.cloudwatch.LogGroup("elektro-scrooge-log-group", {
 const lambdaDeploymentBucket = new aws.s3.Bucket("elektro-scrooge-lambda-deployments", {
     bucket: pulumi.interpolate`elektro-scrooge-lambda-${stack}-${awsAccountId}`,
     forceDestroy: true,
-    versioning: {
-        enabled: true,
+});
+
+const lambdaDeploymentBucketVersioning = new aws.s3.BucketVersioningV2("elektro-scrooge-lambda-deployments-versioning", {
+    bucket: lambdaDeploymentBucket.id,
+    versioningConfiguration: {
+        status: "Enabled",
     },
 });
 
@@ -53,7 +57,7 @@ const lambdaArchiveObject = new aws.s3.BucketObject("elektro-scrooge-lambda-arch
     key: pulumi.interpolate`lambda-${stack}.zip`,
     source: lambdaArchive,
     contentType: "application/zip",
-});
+}, { dependsOn: [lambdaDeploymentBucketVersioning] });
 
 const lambdaFunction = new aws.lambda.Function("elektro-scrooge-postPrice", {
     runtime: aws.lambda.Runtime.NodeJS22dX,
