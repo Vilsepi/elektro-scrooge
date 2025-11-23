@@ -32,12 +32,12 @@ In order to send messages to Telegram, you'll need to setup a bot and a chat, an
 
 There's unfortunately quite a lot of manual steps to completely deploy this project:
 
-- Install canvas lambda layer https://github.com/charoitel/lambda-layer-canvas-nodejs
-- Setup a Telegram bot with BotFather and get your bot auth token and chat ID
+- Install canvas lambda layer as a Serverless Application into you AWS account https://github.com/charoitel/lambda-layer-canvas-nodejs
+- Setup a Telegram bot with BotFather and get your secret bot auth token and chat ID
 - Setup working AWS CLI credentials
-- Download a font that you want to use and include it in the `render.ts`.
+- Download a font that you want to use in the chart, and include it in the `render.ts`.
 
-#### Using Pulumi (Recommended)
+#### Using Pulumi
 
 Install Pulumi CLI and configure your stack:
 
@@ -60,11 +60,3 @@ Deploy:
 To remove all resources:
 
     pulumi destroy
-
-#### Using Serverless Framework (Legacy)
-
-Make a copy of `secrets.example.yml` into `secrets.yml` and fill in your Telegram credentials:
-
-    npm install serverless
-    npm run build
-    npm run deploy
