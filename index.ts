@@ -37,10 +37,7 @@ const logGroup = new aws.cloudwatch.LogGroup("elektro-scrooge-log-group", {
 
 const lambdaDeploymentBucket = new aws.s3.Bucket("elektro-scrooge-lambda-deployments", {
     bucket: pulumi.interpolate`elektro-scrooge-lambda-${stack}-${awsAccountId}`,
-    forceDestroy: true,
-    versioning: {
-        enabled: true,
-    },
+    forceDestroy: true
 });
 
 const lambdaArchive = new pulumi.asset.AssetArchive({
