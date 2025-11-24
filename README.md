@@ -26,7 +26,10 @@ In order to send messages to Telegram, you'll need to setup a bot and a chat, an
 
     npm run build
     npm run lint
-    npm run test
+    npm run test:unit
+    npm run test:integration
+
+Unit tests can be run completely offline, while integration tests call the remote API. Use `npm run test` to run all tests.
 
 ### Deploying
 

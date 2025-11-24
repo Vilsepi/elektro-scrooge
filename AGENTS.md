@@ -12,7 +12,7 @@
 - Compile for Lambda/local run: `npm run build` (TypeScript -> `dist/`, copies font/package manifests, installs prod-only deps in `dist/`).
 - Run built artifact locally (dry run logs instead of sending Telegram): `npm run start`.
 - Lint: `npm run lint` (ESLint with TypeScript/Jest configs).
-- Tests: `npm test` for all suites; run after builds/lints for PRs.
+- Tests: `npm run test:unit` for unit tests (offline, fast); `npm run test:integration` for integration tests (requires network, calls remote API); `npm test` for all suites. **AI agents should only run `npm run test:unit` to avoid network calls and keep tests fast.**
 - Pulumi helpers: `npm run pulumi:preview`, `npm run pulumi:up`, `npm run pulumi:destroy` (require configured stack and AWS creds).
 
 ## Coding Style & Naming Conventions
@@ -23,11 +23,12 @@
 
 ## Testing Guidelines
 - Jest is the test runner; name files `*.test.ts` or place under `__tests__/`.
-- Unit tests should cover pricing math and rendering helpers; integration tests may hit the live remote API, so mark or skip them when running offline/CI without network.
+- Unit tests (in `__tests__/unit/`) should cover pricing math and rendering helpers; they run completely offline and are fast. Integration tests (in `__tests__/integration/`) may hit the live remote API.
+- **AI agents must only run `npm run test:unit`** - never run integration tests as they require network access and may be slow or flaky.
 - Use `nock` to mock HTTP if you need deterministic results. Add fixtures under `__tests__` when helpful.
 
 ## Commit & Pull Request Guidelines
 - Git history favors short, imperative summaries (`Remove…`, `Fix…`, `Cleanup…`). Match that tone and keep scope focused.
-- Before opening a PR, run `npm run lint` and `npm test`; include results in the description.
+- Before opening a PR, run `npm run lint` and `npm run test:unit`; include results in the description. Integration tests run separately in CI.
 - Describe the change, link issues, and call out infra or secret changes. Add screenshots of Telegram output/graphs when altering message formatting or visuals.
 - Never commit real secrets; use `secrets.yml` (gitignored) or Pulumi `config set --secret` for sensitive values (`TELEGRAM_BOT_AUTH_TOKEN`, `TELEGRAM_CHAT_ID`).

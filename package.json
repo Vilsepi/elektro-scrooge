@@ -31,6 +31,8 @@
     "lint": "eslint .",
     "start": "node dist/index.js",
     "test": "jest --verbose",
+    "test:unit": "jest --verbose --testPathPatterns=__tests__/unit",
+    "test:integration": "jest --verbose --testPathPatterns=__tests__/integration",
     "prepare": "husky",
     "pulumi:preview": "npm run build && pulumi preview",
     "pulumi:up": "npm run build && pulumi up",
