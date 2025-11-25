@@ -31,16 +31,16 @@ In order to send messages to Telegram, you'll need to setup a Telegram bot and a
 
 Unit tests can be run completely offline, while integration tests call the remote API. Use `npm run test` to run all tests.
 
-### Deploying
+### Deployment prerequisites
 
-There's unfortunately quite a lot of manual steps to completely deploy this project:
+Unfortunately, there's several manual steps to completely deploy this project:
 
-- Install canvas lambda layer as a Serverless Application into you AWS account https://github.com/charoitel/lambda-layer-canvas-nodejs
-- Setup a Telegram bot with BotFather and get your secret bot auth token and chat ID
 - Setup working AWS CLI credentials
-- Download a font that you want to use in the chart, and include it in the `render.ts`.
+- Install [node-canvas lambda layer](https://github.com/charoitel/lambda-layer-canvas-nodejs) as a Serverless Application into your AWS account. We render the price chart using Canvas, but the node-canvas is too big to bundle into a lambda function, so we'll use it from a layer instead.
+- Download a font `.ttf` file that you want to use in the chart, and include it in the `render.ts`.
+- Setup a Telegram bot with [BotFather](https://core.telegram.org/bots/tutorial) and get your secret bot auth token and chat ID
 
-#### Using Pulumi
+### Deploying with Pulumi
 
 Install Pulumi CLI and configure your stack:
 
