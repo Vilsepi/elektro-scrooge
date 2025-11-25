@@ -11,7 +11,7 @@ export interface TodayTomorrowBoundaries {
 export const getDayBoundaries = (date: Date): DayBoundaries => {
   const utcDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
   const beginning = Math.floor(utcDate.getTime() / 1000);
-  const end = Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59, 999) / 1000);
+  const end = Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59, 999) / 1000) + 1;
   return { beginning, end };
 };
 
