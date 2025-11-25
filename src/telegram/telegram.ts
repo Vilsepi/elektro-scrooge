@@ -27,11 +27,13 @@ export class TelegramClient {
     })).data;
   }
 
-  // Send an image with a caption text
-  public sendImage = async (imagePath: string, caption: string): Promise<TelegramResponse> => {
+  // Send an image with an optional caption text
+  public sendImage = async (imagePath: string, caption?: string): Promise<TelegramResponse> => {
     const formData = new FormData();
     formData.append('chat_id', this.chatId);
-    formData.append('caption', caption);
+    if (caption !== undefined) {
+      formData.append('caption', caption);
+    }
     formData.append('photo', fs.createReadStream(imagePath));
 
     return (await this.client.post<TelegramResponse>(`/bot${this.authToken}/sendPhoto`, formData, {
