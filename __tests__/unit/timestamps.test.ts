@@ -8,8 +8,8 @@ describe('getDayBoundaries', () => {
 
     // 2025-11-25 00:00:00 UTC = 1764028800
     expect(boundaries.beginning).toBe(1764028800);
-    // 2025-11-25 23:59:59.999 UTC = 1764115199
-    expect(boundaries.end).toBe(1764115199);
+    // End is exclusive: next day 00:00:00 UTC = 1764115200
+    expect(boundaries.end).toBe(1764115200);
   });
 
   it('should handle dates near midnight correctly', () => {
@@ -63,14 +63,14 @@ describe('getTodayTomorrowBoundaries', () => {
     // Today: 2025-11-25 UTC
     // Beginning: 2025-11-25 00:00:00 UTC = 1764028800
     expect(boundaries.today.beginning).toBe(1764028800);
-    // End: 2025-11-25 23:59:59.999 UTC = 1764115199
-    expect(boundaries.today.end).toBe(1764115199);
+    // End (exclusive): 2025-11-26 00:00:00 UTC = 1764115200
+    expect(boundaries.today.end).toBe(1764115200);
 
     // Tomorrow: 2025-11-26 UTC
     // Beginning: 2025-11-26 00:00:00 UTC = 1764115200
     expect(boundaries.tomorrow.beginning).toBe(1764115200);
-    // End: 2025-11-26 23:59:59.999 UTC = 1764201599
-    expect(boundaries.tomorrow.end).toBe(1764201599);
+    // End (exclusive): 2025-11-27 00:00:00 UTC = 1764201600
+    expect(boundaries.tomorrow.end).toBe(1764201600);
   });
 
   it('should handle year boundary correctly', () => {
