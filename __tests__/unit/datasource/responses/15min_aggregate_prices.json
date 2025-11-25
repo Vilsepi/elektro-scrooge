@@ -1,0 +1,1169 @@
+{
+    "averagePrice": 11.816,
+    "currency": "EUR",
+    "deliveryAreas": null,
+    "deliveryEnd": "0001-01-01T00:00:00",
+    "deliveryStart": "0001-01-01T00:00:00",
+    "market": null,
+    "marketMainCurrency": null,
+    "maxPrice": 22.400000000000002,
+    "minPrice": 3.821,
+    "prices": [
+        {
+            "day": 25,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 8.623
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 8.141
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.805
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.441
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 1,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.034
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 1,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.845
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 1,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.663
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 1,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.604
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 2,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.623
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 2,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.492
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 2,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.429
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 2,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.387
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 3,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.382
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 3,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.367
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 3,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.333
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 3,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.3
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 4,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.29
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 4,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.18
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 4,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.19
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 4,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.16
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 5,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.186
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 5,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.271
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 5,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.247
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 5,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.421
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 6,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.404
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 6,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.481
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 6,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.703
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 6,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.045
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 7,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.72
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 7,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.352
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 7,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 8.207
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 7,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 10.627
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 8,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 10.489
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 8,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 15.103
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 8,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 20.286
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 8,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 20.648
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 9,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.242
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 9,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 20.216
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 9,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 20.214
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 9,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 20.16
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 10,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 18.249
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 10,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.69
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 10,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 17.824
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 10,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 17.943
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 11,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.012
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 11,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 16.67
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 11,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 15.498
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 11,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 14.999
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 12,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 16.753
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 12,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.229
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 12,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.895
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 12,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.78
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 13,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.158
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 13,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.11
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 13,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.703
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 13,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 22.4
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 14,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.618
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 14,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 19.128
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 14,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 17.754
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 14,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 16.738
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 15,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 15.782
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 15,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 18.18
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 15,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 16.25
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 15,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 18.924
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 16,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 17.584
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 16,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 18.499
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 16,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 16.005
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 16,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 15.0
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 17,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 14.903
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 17,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 14.0
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 17,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 13.999
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 17,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 10.0
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 18,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 13.999
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 18,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 12.0
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 18,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 10.0
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 18,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.069
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 19,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 14.0
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 19,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 13.999
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 19,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 12.0
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 19,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 9.815
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 20,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 14.0
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 20,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 12.0
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 20,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 9.034
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 20,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 5.487
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 21,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 8.515
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 21,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.779
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 21,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 4.802
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 21,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 3.821
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 22,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 8.74
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 22,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 7.605
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 22,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.535
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 22,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 5.376
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 23,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.819
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 23,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 6.433
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 23,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 5.859
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 25,
+            "hour": 23,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 5.029
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        }
+    ],
+    "resolution": "15mins",
+    "status": null,
+    "timezone": "EET",
+    "unit": "EURO_CENT/KWH"
+}

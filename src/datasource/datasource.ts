@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { SpotPrice } from './datasourceTypes';
+import { SpotPrice, AggregatedSpotPricesResponse } from './datasourceTypes';
 
 export class SourceClient {
   private readonly client: AxiosInstance;
@@ -14,8 +14,32 @@ export class SourceClient {
     });
   }
 
+  // Legacy implementation that fetches hourly spot prices before spot pricing changed to 15-minute resolution
   public getLegacySpotPrices = async (start_date: string, end_date: string) : Promise<SpotPrice[]> => {
     return (await this.client.get<SpotPrice[]>(`/api/price/spot/${start_date}/${end_date}?lang=fi`)).data;
+  }
+
+  /**
+   * Fetches aggregated electricity spot prices
+   * @param deliveryStart - Start time of time range as UNIX timestamp in seconds e.g. "1764115200". Timezone is dictated by the "timezone" field
+   * @param deliveryEnd - End time of time range as UNIX timestamp in seconds e.g. "1764201600". Timezone is dictated by the "timezone" field
+   * @param resolution - Price resolution, e.g. '15mins' or '60mins' (default: '15mins')
+   * @param deliveryAreas - Comma-separated delivery area codes (default: 'FI')
+   * @param currency - Currency code for prices (default: 'EUR')
+   * @param timezone - Timezone for timestamps (default: 'EET')
+   * @returns Aggregated spot prices response containing price data and metadata
+   */
+  public getAggregatedSpotPrices = async (deliveryStart: number, deliveryEnd: number, resolution: string = '15mins', deliveryAreas: string = 'FI', currency: string = 'EUR', timezone: string = 'EET') : Promise<AggregatedSpotPricesResponse> => {
+    return (await this.client.get<AggregatedSpotPricesResponse>('/fi-order-prd/api/nordpool/aggregated-spot-prices', {
+      params: {
+        deliveryStart,
+        deliveryEnd,
+        resolution,
+        deliveryAreas,
+        currency,
+        timezone
+      }
+    })).data;
   }
 
 }
