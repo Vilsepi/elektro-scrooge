@@ -42,10 +42,9 @@ There's unfortunately quite a lot of manual steps to completely deploy this proj
 
 #### Using Pulumi
 
-Install Pulumi CLI and configure your stack:
+Install Pulumi CLI and initialize the stack for the first time:
 
     npm install
-    npm run build
     pulumi install
 
     export AWS_PROFILE=heap
@@ -58,6 +57,8 @@ Install Pulumi CLI and configure your stack:
 
 Deploy:
 
+    npm run clean && npm run build
+    export AWS_PROFILE=heap
     pulumi up
 
 To remove all resources:
