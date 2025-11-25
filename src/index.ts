@@ -1,9 +1,9 @@
 import { SourceClient } from './datasource/datasource';
 import { getTodayTomorrowBoundaries } from './timestamps';
-/*import { TimeSegment } from './datasource/datasourceTypes';
-import { renderCaption, renderGraph } from './telegram/render';
-import { TelegramClient } from './telegram/telegram';
-*/
+// import { renderCaption } from './telegram/render';
+import { renderGraph } from './telegram/renderChart';
+// import { TelegramClient } from './telegram/telegram';
+
 
 const FIFTEEN_MINUTE_SEGMENTS_IN_DAY: number = 24 * 4; // 96
 
@@ -21,13 +21,13 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
 
   if (pricesToday.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY && pricesTomorrow.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
 
-    //const graphImagePath = await renderGraph(pricesToday, pricesTomorrow);
-    /*const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
-    */
+    const graphImagePath = await renderGraph(pricesToday, pricesTomorrow);
+    console.log(`Rendered price chart: ${graphImagePath}`);
+    //const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
+
     if (!dryrun) {
       console.log("Sending message to Telegram");
-      //await telegramClient.sendImage(graphImagePath, message);
-
+      // await telegramClient.sendImage(graphImagePath, message);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
