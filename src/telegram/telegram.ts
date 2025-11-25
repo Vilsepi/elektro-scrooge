@@ -17,16 +17,6 @@ export class TelegramClient {
     });
   }
 
-  // Send a message with optional HTML formatting to chat ID set by env var.
-  public sendMessage = async (text: string): Promise<TelegramResponse> => {
-    return (await this.client.post<TelegramResponse>(`/bot${this.authToken}/sendMessage`, {
-      chat_id: this.chatId,
-      text: text,
-      parse_mode: 'HTML',
-      disable_web_page_preview: true
-    })).data;
-  }
-
   // Send an image with an optional caption text
   public sendImage = async (imagePath: string, caption?: string): Promise<TelegramResponse> => {
     const formData = new FormData();
