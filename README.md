@@ -18,9 +18,9 @@ The app adds electricity company margin, Finnish VAT, grid transfer fees and ele
     npm run build
     npm run start
 
-By default, when run locally, the program will do a dryrun, printing the HTML-formatted content of the messages instead of sending the messages to Telegram.
+By default, when ran locally, the program will do a dryrun, printing the price data, the text messages that would be sent to Telegram, and outputs the price graph as `graph.png` into the root of the repo. It will call the upstream API for the prices, but it will not call Telegram API.
 
-In order to send messages to Telegram, you'll need to setup a bot and a chat, and either disable the local dryrun, or deploy the program to AWS Lambda.
+In order to send messages to Telegram, you'll need to setup a Telegram bot and a chat, and either disable the local dryrun in the handler, or deploy the program to AWS Lambda where it will not run in dryrun mode.
 
 ### Testing
 
