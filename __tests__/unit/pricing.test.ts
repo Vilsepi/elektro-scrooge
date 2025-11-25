@@ -1,4 +1,4 @@
-import { getPriceWithFeesAndTaxes } from '../../src/index';
+import { getPriceWithFeesAndTaxes } from '../../src/pricing';
 
 describe('getPriceWithFeesAndTaxes', () => {
   test('should return correct total hourly price', () => {
