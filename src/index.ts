@@ -2,14 +2,14 @@ import { SourceClient } from './datasource/datasource';
 import { getTodayTomorrowBoundaries } from './timestamps';
 // import { renderCaption } from './telegram/render';
 import { renderGraph } from './telegram/renderChart';
-// import { TelegramClient } from './telegram/telegram';
+import { TelegramClient } from './telegram/telegram';
 
 
 const FIFTEEN_MINUTE_SEGMENTS_IN_DAY: number = 24 * 4; // 96
 
 export const mainApp = async (dryrun: boolean): Promise<void> => {
   const sourceClient: SourceClient = new SourceClient();
-  //const telegramClient: TelegramClient = new TelegramClient();
+  const telegramClient: TelegramClient = new TelegramClient();
 
   const { today, tomorrow } = getTodayTomorrowBoundaries();
 
@@ -27,7 +27,7 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
 
     if (!dryrun) {
       console.log("Sending message to Telegram");
-      // await telegramClient.sendImage(graphImagePath, message);
+      await telegramClient.sendImage(graphImagePath);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
