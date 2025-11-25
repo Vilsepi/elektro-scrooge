@@ -26,7 +26,7 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const endDate = tomorrow.toISOString().substring(0,10);
 
   console.log(`Fetching prices from ${startDate} to ${endDate}`);
-  const hourlySpotPrices = await sourceClient.getSpotPrices(startDate, endDate);
+  const hourlySpotPrices = await sourceClient.getLegacySpotPrices(startDate, endDate);
 
   // API should return prices for 48 hours, for today and tomorrow
   if (hourlySpotPrices.length == 48) {

@@ -10,7 +10,7 @@ describe('Data source', () => {
     const startDate = now.toISOString().substring(0,10);
     const endDate = tomorrow.toISOString().substring(0,10);
 
-    const prices = await client.getSpotPrices(startDate, endDate);
+    const prices = await client.getLegacySpotPrices(startDate, endDate);
 
     // Depending on time of day, there should be either only today's or today's and tomorrow's prices
     expect(prices.length).toBeGreaterThanOrEqual(24);

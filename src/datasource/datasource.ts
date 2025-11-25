@@ -14,7 +14,7 @@ export class SourceClient {
     });
   }
 
-  public getSpotPrices = async (start_date: string, end_date: string) : Promise<SpotPrice[]> => {
+  public getLegacySpotPrices = async (start_date: string, end_date: string) : Promise<SpotPrice[]> => {
     return (await this.client.get<SpotPrice[]>(`/api/price/spot/${start_date}/${end_date}?lang=fi`)).data;
   }
 

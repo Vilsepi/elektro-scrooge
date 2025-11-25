@@ -16,7 +16,7 @@ describe('getSpotPrices', () => {
       .get('/api/price/spot/2022-08-25/2022-08-26?lang=fi')
       .reply(200, JSON.stringify(expected_response));
 
-    const response = await client.getSpotPrices("2022-08-25", "2022-08-26");
+    const response = await client.getLegacySpotPrices("2022-08-25", "2022-08-26");
     expect(response).toEqual(Object.values(expected_response));
 
     for (const hourlyPrice of response) {
