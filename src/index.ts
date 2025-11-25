@@ -5,6 +5,8 @@ import { renderCaption, renderGraph } from './telegram/render';
 import { TelegramClient } from './telegram/telegram';
 */
 
+const FIFTEEN_MINUTE_SEGMENTS_IN_DAY: number = 24 * 4; // 96
+
 export const mainApp = async (dryrun: boolean): Promise<void> => {
   const sourceClient: SourceClient = new SourceClient();
   //const telegramClient: TelegramClient = new TelegramClient();
@@ -17,7 +19,7 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const pricesToday = await sourceClient.getAggregatedSpotPrices(today.beginning, today.end);
   const pricesTomorrow = await sourceClient.getAggregatedSpotPrices(tomorrow.beginning, tomorrow.end);
 
-  if (pricesToday.prices.length > 0 && pricesTomorrow.prices.length > 0) {
+  if (pricesToday.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY && pricesTomorrow.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
 
     //const graphImagePath = await renderGraph(pricesToday, pricesTomorrow);
     /*const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
