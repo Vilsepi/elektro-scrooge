@@ -35,7 +35,7 @@
     "test:integration": "jest --verbose --testPathPatterns=__tests__/integration",
     "prepare": "husky",
     "pulumi:preview": "npm run build && pulumi preview",
-    "pulumi:up": "npm run build && cp Roboto-Regular.ttf dist/telegram/ && pulumi up",
+    "deploy": "npm run build && cp Roboto-Regular.ttf dist/telegram/ && pulumi up",
     "pulumi:destroy": "pulumi destroy"
   },
   "repository": {

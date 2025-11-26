@@ -58,8 +58,10 @@ Install Pulumi CLI and configure your stack:
 
 Deploy:
 
-    pulumi up
+    export AWS_PROFILE=heap
+    npm run deploy
 
 To remove all resources:
 
-    pulumi destroy
+    export AWS_PROFILE=heap
+    npm run pulumi:destroy
