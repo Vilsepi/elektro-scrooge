@@ -1,4 +1,4 @@
-name: CI
+name: Run checks
 on:
   push:
     branches:
@@ -8,17 +8,23 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v6
+
       - name: Install dependencies
         run: npm ci
+
       - name: Lint
         run: npm run lint
+
       - name: Build
         run: npm run build
-      - name: Unit Tests
+
+      - name: Unit tests
         run: npm run test:unit
-      - name: Integration Tests
+
+      - name: Integration tests
         run: npm run test:integration

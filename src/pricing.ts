@@ -1,5 +1,3 @@
-import { SpotPrice, TimeSegment } from './datasource/datasourceTypes';
-
 // General multiplier for VAT 25.5%. Spot prices from API are in VAT 0%
 const ELECTRICITY_TAX_MULTIPLIER = 1.255;
 
@@ -17,19 +15,3 @@ const GRID_SERVICE_TAX_FOR_HOUSEHOLDS = 2.827515;
 export const getPriceWithFeesAndTaxes = (basePrice: number): number => {
   return (basePrice * ELECTRICITY_TAX_MULTIPLIER) + ELECTRICITY_COMPANY_MARGIN + GRID_SERVICE_FEE + GRID_SERVICE_TAX_FOR_HOUSEHOLDS;
 };
-
-export const getSimpleHour = (timeStampHour: string): string => {
-  return timeStampHour.split(':')[0];
-}
-
-export const getSegment = (segment: SpotPrice[]): TimeSegment => {
-  return {
-    date: segment[0].timeStampDay,
-    hours: `${getSimpleHour(segment[0].timeStampHour)}-${getSimpleHour(segment[segment.length - 1].timeStampHour)}`,
-    hourlyOriginalSpotPrices: segment.map(hour => hour.value),
-    hourlyPrices: segment.map(hour => getPriceWithFeesAndTaxes(hour.value)),
-    priceLowest: getPriceWithFeesAndTaxes(Math.min(...segment.map(hour => hour.value))),
-    priceHighest: getPriceWithFeesAndTaxes(Math.max(...segment.map(hour => hour.value))),
-    priceAverage: getPriceWithFeesAndTaxes(segment.reduce((total, next) => total + next.value, 0) / segment.length)
-  }
-}
