@@ -1,0 +1,65 @@
+{
+    "averagePrice": 0.45199999999999996,
+    "currency": "EUR",
+    "deliveryAreas": null,
+    "deliveryEnd": "0001-01-01T00:00:00",
+    "deliveryStart": "0001-01-01T00:00:00",
+    "market": null,
+    "marketMainCurrency": null,
+    "maxPrice": 0.493,
+    "minPrice": 0.4,
+    "prices": [
+        {
+            "day": 27,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 0.493
+            },
+            "minute": 0,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 27,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 0.493
+            },
+            "minute": 15,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 27,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 0.421
+            },
+            "minute": 30,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        },
+        {
+            "day": 27,
+            "hour": 0,
+            "measurement": {
+                "unit": "EURO_CENT/KWH",
+                "value": 0.4
+            },
+            "minute": 45,
+            "month": 11,
+            "week": 48,
+            "year": 2025
+        }
+    ],
+    "resolution": "15mins",
+    "status": null,
+    "timezone": "EET",
+    "unit": "EURO_CENT/KWH"
+}

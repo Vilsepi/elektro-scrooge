@@ -5,6 +5,7 @@
 - `src/datasource/` contains the Nord Pool/Vattenfall client and price types; mock or stub this layer in tests when possible.
 - `src/telegram/` renders caption/image content and handles Telegram API calls. Fonts (Roboto) live at the repo root and are copied to `dist/`.
 - `__tests__/unit` and `__tests__/integration` hold Jest suites; add new specs alongside related code. `dist/` is build output; avoid editing it manually.
+- `__tests__/unit/datasource/responses/` contains actual responses examples from the upstream API.
 - Infra-as-code lives in `Pulumi.yaml` and `Pulumi.*.yaml`; secrets templates are in `secrets.example.yml`.
 
 ## Build, Test, and Development Commands
