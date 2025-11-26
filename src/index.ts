@@ -1,11 +1,9 @@
 import { SourceClient } from './datasource/datasource';
 import { getTodayTomorrowBoundaries } from './timestamps';
-import { renderCaption } from './telegram/render';
+import { generateMessage, hasCompletePriceData } from './telegram/render';
 import { renderGraph } from './telegram/renderChart';
 import { TelegramClient } from './telegram/telegram';
 
-
-const FIFTEEN_MINUTE_SEGMENTS_IN_DAY: number = 24 * 4; // 96
 
 export const mainApp = async (dryrun: boolean): Promise<void> => {
   const sourceClient: SourceClient = new SourceClient();
@@ -19,14 +17,11 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const pricesToday = await sourceClient.getAggregatedSpotPrices(today.beginning, today.end);
   const pricesTomorrow = await sourceClient.getAggregatedSpotPrices(tomorrow.beginning, tomorrow.end);
 
-  if (pricesToday.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY && pricesTomorrow.prices.length > 0) {
+  if (hasCompletePriceData(pricesToday) && pricesTomorrow.prices.length > 0) {
     const graphImagePath = await renderGraph(pricesToday, pricesTomorrow);
     console.log(`Rendered price chart: ${graphImagePath}`);
 
-    let message: string = "Huomisen hinnat eivät olleet vielä saatavilla";
-    if (pricesTomorrow.prices.length === FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
-      message = renderCaption(pricesToday, pricesTomorrow);
-    }
+    const message = generateMessage(pricesToday, pricesTomorrow);
 
     if (!dryrun) {
       console.log("Sending message to Telegram");
