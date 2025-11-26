@@ -12,6 +12,7 @@ export const getDifferenceBetweenDays = (priceToday: number, priceTomorrow: numb
   return `${+Number(difference).toFixed(0)}% vähemmän`;
 }
 
+// TODO remove
 // Renders a rich-text formatted message describing electricity prices
 export const renderMessage = (today: TimeSegment, tomorrow: TimeSegment, detailedHours: TimeSegment[]): string => {
   const baseMessage =
