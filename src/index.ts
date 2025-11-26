@@ -24,7 +24,7 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
     console.log(`Rendered price chart: ${graphImagePath}`);
 
     let message: string = "Huomisen hinnat eivät olleet vielä saatavilla";
-    if (pricesTomorrow.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
+    if (pricesTomorrow.prices.length === FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
       message = renderCaption(pricesToday, pricesTomorrow);
     }
 
