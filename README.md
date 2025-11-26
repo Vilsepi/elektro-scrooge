@@ -36,7 +36,7 @@ Unit tests can be run completely offline, while integration tests call the remot
 Unfortunately, there's several manual steps to completely deploy this project:
 
 - Setup working AWS CLI credentials
-- Install [node-canvas lambda layer](https://github.com/charoitel/lambda-layer-canvas-nodejs) as a Serverless Application into your AWS account. We render the price chart using Canvas, but the node-canvas is too big to bundle into a lambda function, so we'll use it from a layer instead.
+- Install [node-canvas lambda layer](https://github.com/charoitel/lambda-layer-canvas-nodejs) as a Serverless Application into your AWS account. We render the price chart using Chart.js, but its prerequisite node-canvas is too big to bundle into a lambda function, so we'll use a layer that handles it.
 - Download a font `.ttf` file that you want to use in the chart, and include it in the `render.ts`.
 - Setup a Telegram bot with [BotFather](https://core.telegram.org/bots/tutorial) and get your secret bot auth token and chat ID
 

@@ -20,15 +20,18 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
   const pricesTomorrow = await sourceClient.getAggregatedSpotPrices(tomorrow.beginning, tomorrow.end);
 
   if (pricesToday.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY && pricesTomorrow.prices.length > 0) {
-
     const graphImagePath = await renderGraph(pricesToday, pricesTomorrow);
     console.log(`Rendered price chart: ${graphImagePath}`);
-    //const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
-    const message = "Sähkön hinnat tänään ja huomenna";
+
+    let message: string = "Huomisen hinnat eivät olleet vielä saatavilla";
+    if (pricesTomorrow.prices.length < FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
+      message = "Sähkön hinta";
+      //const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
+    }
 
     if (!dryrun) {
       console.log("Sending message to Telegram");
-      await telegramClient.sendImage(graphImagePath);
+      await telegramClient.sendImage(graphImagePath, message);
     }
     else {
       console.log("Dryrun, not sending a message to Telegram");
