@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { SpotPrice, AggregatedSpotPricesResponse } from './datasourceTypes';
+import { AggregatedSpotPricesResponse } from './datasourceTypes';
 
 export class SourceClient {
   private readonly client: AxiosInstance;
@@ -12,12 +12,6 @@ export class SourceClient {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36'
       }
     });
-  }
-
-  // Legacy implementation that fetches hourly spot prices before spot pricing changed to 15-minute resolution
-  // TODO : remove
-  public getLegacySpotPrices = async (start_date: string, end_date: string) : Promise<SpotPrice[]> => {
-    return (await this.client.get<SpotPrice[]>(`/api/price/spot/${start_date}/${end_date}?lang=fi`)).data;
   }
 
   /**

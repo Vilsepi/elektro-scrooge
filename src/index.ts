@@ -1,6 +1,6 @@
 import { SourceClient } from './datasource/datasource';
 import { getTodayTomorrowBoundaries } from './timestamps';
-// import { renderCaption } from './telegram/render';
+import { renderCaption } from './telegram/render';
 import { renderGraph } from './telegram/renderChart';
 import { TelegramClient } from './telegram/telegram';
 
@@ -24,9 +24,8 @@ export const mainApp = async (dryrun: boolean): Promise<void> => {
     console.log(`Rendered price chart: ${graphImagePath}`);
 
     let message: string = "Huomisen hinnat eivät olleet vielä saatavilla";
-    if (pricesTomorrow.prices.length < FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
-      message = "Sähkön hinta";
-      //const message = renderCaption(todaysDaytimePrices, tomorrowsDaytimePrices);
+    if (pricesTomorrow.prices.length == FIFTEEN_MINUTE_SEGMENTS_IN_DAY) {
+      message = renderCaption(pricesToday, pricesTomorrow);
     }
 
     if (!dryrun) {
