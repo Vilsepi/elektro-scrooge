@@ -9,8 +9,6 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
   const pricesTodayValues = pricesToday.prices.map(price => price.measurement.value);
   const pricesTomorrowValues = pricesTomorrow.prices.map(price => price.measurement.value);
 
-  //const numberOfLabels =
-
   const width = 600;
   const height = 400;
   const configuration: ChartConfiguration = {
