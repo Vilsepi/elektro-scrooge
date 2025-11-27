@@ -39,4 +39,26 @@ describe('Data source', () => {
     }
   });
 
+  test('should have summary values that match the prices array', async () => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const deliveryStart = Math.floor(now.getTime() / 1000);
+    const deliveryEnd = Math.floor(tomorrow.getTime() / 1000);
+
+    const response = await client.getAggregatedSpotPrices(deliveryStart, deliveryEnd);
+    const priceValues = response.prices.map(price => price.measurement.value);
+
+    const actualMinPrice = Math.min(...priceValues);
+    const actualMaxPrice = Math.max(...priceValues);
+    const actualAveragePrice = priceValues.reduce((sum, price) => sum + price, 0) / priceValues.length;
+
+    // Verify that summary values match the calculated values
+    expect(response.minPrice).toBeCloseTo(actualMinPrice, 3);
+    expect(response.maxPrice).toBeCloseTo(actualMaxPrice, 3);
+    expect(response.averagePrice).toBeCloseTo(actualAveragePrice, 2);
+  });
+
 });
