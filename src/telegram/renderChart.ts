@@ -56,6 +56,11 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
     },
 
     options: {
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      },
       elements: {
         line: {
           stepped: true
