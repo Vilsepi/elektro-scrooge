@@ -5,6 +5,9 @@ import { registerFont } from 'canvas';
 import path from 'path';
 import { AggregatedSpotPricesResponse } from '../datasource/datasourceTypes';
 
+// Trim early morning hours to focus on daytime prices
+const TRIM_FIRST_N_ITEMS = 6 * 4;
+const NUMBER_OF_X_AXIS_TICKS = 18;
 const WEEKDAYS = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
 
 const getWeekdayFromPrices = (prices: AggregatedSpotPricesResponse): string => {
@@ -17,9 +20,9 @@ const getWeekdayFromPrices = (prices: AggregatedSpotPricesResponse): string => {
 };
 
 export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pricesTomorrow: AggregatedSpotPricesResponse): Promise<string> => {
-  const pricesTodayValues = pricesToday.prices.map(price => price.measurement.value);
-  const pricesTomorrowValues = pricesTomorrow.prices.map(price => price.measurement.value);
-  const labels = pricesToday.prices.map(p => p.hour + p.minute / 60);
+  const pricesTodayValues = pricesToday.prices.slice(TRIM_FIRST_N_ITEMS).map(price => price.measurement.value);
+  const pricesTomorrowValues = pricesTomorrow.prices.slice(TRIM_FIRST_N_ITEMS).map(price => price.measurement.value);
+  const labels = pricesToday.prices.slice(TRIM_FIRST_N_ITEMS).map(p => p.hour + p.minute / 60);
 
   const todayLabel = getWeekdayFromPrices(pricesToday);
   const tomorrowLabel = getWeekdayFromPrices(pricesTomorrow);
@@ -79,7 +82,7 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
             color: '#f1f1f1'
           },
            ticks: {
-            maxTicksLimit: 12
+            maxTicksLimit: NUMBER_OF_X_AXIS_TICKS
           }
         },
         y: {
