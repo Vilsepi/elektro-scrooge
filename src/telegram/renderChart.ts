@@ -19,6 +19,7 @@ const getWeekdayFromPrices = (prices: AggregatedSpotPricesResponse): string => {
 export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pricesTomorrow: AggregatedSpotPricesResponse): Promise<string> => {
   const pricesTodayValues = pricesToday.prices.map(price => price.measurement.value);
   const pricesTomorrowValues = pricesTomorrow.prices.map(price => price.measurement.value);
+  const labels = pricesToday.prices.map(p => p.hour + p.minute / 60);
 
   const todayLabel = getWeekdayFromPrices(pricesToday);
   const tomorrowLabel = getWeekdayFromPrices(pricesTomorrow);
@@ -28,7 +29,7 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
   const configuration: ChartConfiguration = {
     type: 'line',
     data: {
-      labels: pricesToday.prices.map(p => p.hour.toString().padStart(2, '0')),
+      labels: labels,
       datasets: [
         {
           label: tomorrowLabel,
@@ -63,7 +64,7 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
       },
       elements: {
         line: {
-          stepped: true
+          stepped: 'before'
         },
         point: {
           radius: 0
@@ -76,12 +77,15 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
         x: {
           grid: {
             color: '#f1f1f1'
+          },
+           ticks: {
+            maxTicksLimit: 12
           }
         },
         y: {
           display: true,
           min: 0,
-          max: 50,
+          max: 40,
           title: {
             display: true,
             text: 'c/kWh',
