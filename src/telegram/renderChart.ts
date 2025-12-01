@@ -5,9 +5,23 @@ import { registerFont } from 'canvas';
 import path from 'path';
 import { AggregatedSpotPricesResponse } from '../datasource/datasourceTypes';
 
+const WEEKDAYS = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
+
+const getWeekdayFromPrices = (prices: AggregatedSpotPricesResponse): string => {
+  if (prices.prices.length === 0) {
+    return '';
+  }
+  const firstPrice = prices.prices[0];
+  const date = new Date(firstPrice.year, firstPrice.month - 1, firstPrice.day);
+  return WEEKDAYS[date.getDay()];
+};
+
 export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pricesTomorrow: AggregatedSpotPricesResponse): Promise<string> => {
   const pricesTodayValues = pricesToday.prices.map(price => price.measurement.value);
   const pricesTomorrowValues = pricesTomorrow.prices.map(price => price.measurement.value);
+
+  const todayLabel = getWeekdayFromPrices(pricesToday);
+  const tomorrowLabel = getWeekdayFromPrices(pricesTomorrow);
 
   const width = 600;
   const height = 400;
@@ -17,7 +31,7 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
       labels: pricesToday.prices.map(p => p.hour.toString().padStart(2, '0')),
       datasets: [
         {
-          label: 'Huomenna',
+          label: tomorrowLabel,
           data: pricesTomorrowValues,
           backgroundColor: [
             'rgb(252, 179, 23)'
@@ -25,16 +39,16 @@ export const renderGraph = async (pricesToday: AggregatedSpotPricesResponse, pri
           borderColor: [
             'rgb(252, 179, 23)'
           ],
-          borderWidth: 4
+          borderWidth: 2
         },
         {
-          label: 'Tänään',
+          label: todayLabel,
           data: pricesTodayValues,
           backgroundColor: [
-            'rgb(147, 189, 223)'
+            '#7d97adff'
           ],
           borderColor: [
-            'rgb(147, 189, 223)'
+            '#7d97adff'
           ],
           borderWidth: 2
         }
