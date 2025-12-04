@@ -4,11 +4,7 @@ A Telegram bot for monitoring spot prices of electricity. To sauna or not to sau
 
 ![Electrified Scrooge](elektro-scrooge.jpg)
 
-The app pulls hourly spot prices for Nord Pool, and divides them into day (07:00-23:59) and night (00:00-06:59) segments.
-
-Daily averages are calculated from the day segment only. Nightly prices are ignored.
-
-The app adds electricity company margin, Finnish VAT, grid transfer fees and electricity tax to the spot prices, so all values shown are total prices per kWh.
+The app pulls hourly spot prices for Nord Pool and adds electricity company margin, Finnish VAT, grid transfer fees and electricity tax to the spot prices, so all values shown are total prices per kWh. Therefore, even when the spot price is zero, the final price is around ~6-7 eurocents per kWh.
 
 ![Screenshot of a price message from the bot](screenshot.jpg)
 
